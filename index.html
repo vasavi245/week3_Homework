@@ -17,12 +17,7 @@
           <h2>Generate a Password</h2>
         </div>
         <div class="card-body">
-          <textarea
-            readonly
-            id="password"
-            placeholder="Your Secure Password"
-            aria-label="Generated Password"
-          ></textarea>
+          <textarea readonly id="password" placeholder="Your Secure Password" aria-label="Generated Password"></textarea>
         </div>
         <div class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
@@ -32,32 +27,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
-<!--const generateBtn = document.getElementById("btn");
-function generatePassword () {
-    const generateBtn = document.getElementById("btn");
-    var inputBox = document.getElementById("password");
-    var result = "";
-    var passwordCrit =   alert("your password criteria must contain atleast one number, one uppercase, one lowercase, and a special character "); 
-    var passwordLength = propmt("Enter the length of your password, It must be atleast 8 to the maximum of 128.");
-    var lowerCase = confirm("Do you want to include lowercase letters in your password?");
-    var uppercase = confirm("Do you want to include Uppercase letters in your password?");
-    var special = confirm("Do you want to include special characters in your password?");
-    var numbers = confirm(" Do you want to include Numbers in your password?");
-     function getRandomLower() {
-         return string.fromcharCode(Math.floor(Math.random()*26)+97);
-     }
-     function getRandomUpper() {
-        return string.fromcharCode(Math.floor(Math.random()*26)+65);   
-     }
-     function getRandomNumber() {
-        return string.fromcharCode(Math.floor(Math.random()*10)+48); 
-     }
-     function getRandomSpecialChars(){
-         // speical characters for the function
-    const specialCharc = "!@#$%^&*(){}[]";
-    return specialCharc[Math.floor(Math.random()*specialCharc.length)];
-     }
-
-};
-inputbox.value = result;

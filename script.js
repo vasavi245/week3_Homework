@@ -1,6 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate password button
+generateBtn.addEventListener("click", writePassword());
+
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -8,28 +11,38 @@ function writePassword() {
 
   passwordText.value = password;
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-//Min and Max password length
-const minPassLength = 8;
-const maxPassLength = 128;
 // Assigning Variables
-var lowerCase = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-var upperCase = String.fromCharCode(Math.floor(Math.random() * 26) + 65);
-var numbers = String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+
+var upperCase = lowerCase.toUpperCase();
+
+var numbers = "1234567890";
+
 var specialCharacters = "!@#$%^&*(){}[]";
-var userPassword = "";
-var passwordGroup = "";
+
+var Password = "";
+
+var passwordText = "";
+
+var plength = 0;
 
 //user enters the length of the password
 var plength = parseInt(
   prompt("Enter the length of your password it must be 8 to 128 characters")
 );
-while (plength < minPassLength || plength > maxPassLength) {
-  var plength = "password must be between 8 to 128 characters";
+while (isNaN(plength)) {
+
+  var plength = parseInt(prompt("This is not a number, type numbers between 8 to 128 characters",""));
+
 }
+//Requirements for password length
+
+while (plength < 8 || plength > 128){
+
+  var plength = parseInt(prompt("Enter length of password.* Length must be between 8 - 128 characters",""));
+
+} 
+
 
 // Confirm whether user wants to use lower case letters
 
@@ -53,26 +66,27 @@ generatePassword();
 writePassword();
 
 function generatePassword() {
+  
+  for (let i = 0; i < plength; i++) {
+    Password += passwordText.charAt(
+      Math.floor(Math.random() * passwordText.length)
+    );
+  }
+  
   if (selectLowerCase) {
-    passwordGroup += lowerCase;
+    passwordText += lowerCase;
   }
   if (selectUpperCase) {
-    passwordGroup += upperCase;
+    passwordText += upperCase;
   }
 
   if (selectNumber) {
-    passwordGroup += numbers;
+    passwordText += numbers;
   }
 
   if (selectSpecial) {
-    passwordGroup += specialCharacters;
+    passwordText += specialCharacters;
   }
 
-  for (let i = 0; i < plength; i++) {
-    userPassword += passwordGroup.charAt(
-      Math.floor(Math.random() * passwordGroup.length)
-    );
-  }
-
-  return userPassword;
+   return Password;
 }
