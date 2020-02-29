@@ -1,20 +1,7 @@
-// Assignment Code
-var generateBtn = document.querySelector("#generate");
-
-// Add event listener to generate password button
-generateBtn.addEventListener("click", writePassword());
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
 // Assigning Variables
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 
-var upperCase = lowerCase.toUpperCase();
+var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 var numbers = "1234567890";
 
@@ -26,67 +13,83 @@ var passwordText = "";
 
 var plength = 0;
 
+// Assignment Code
+var generateButton = document.querySelector("#generatebtn");
+
+// Add event listener to generate password button
+generateButton.addEventListener("click", function() {
+  generatePassword();
+  document.querySelector("#password").textContent = passwordText;
+});
+
 //user enters the length of the password
-var plength = parseInt(
-  prompt("Enter the length of your password it must be 8 to 128 characters")
-);
-while (isNaN(plength)) {
+function generatePassword(
+  selectLowerCase,
+  selectUpperCase,
+  selectNumber,
+  selectSpecial
+) {
+  plength = parseInt(
+    prompt("Enter the length of your password it must be 8 to 128 characters")
+  );
+  password = "";
 
-  var plength = parseInt(prompt("This is not a number, type numbers between 8 to 128 characters",""));
-
-}
-//Requirements for password length
-
-while (plength < 8 || plength > 128){
-
-  var plength = parseInt(prompt("Enter length of password.* Length must be between 8 - 128 characters",""));
-
-} 
-
-
-// Confirm whether user wants to use lower case letters
-
-var selectLowerCase = confirm("Would you like to use lower case letters?");
-
-// Confirm whether user wants to use upper case letters
-
-var selectUpperCase = confirm("Would you like to use upper case letters?");
-
-//Confirm whether user wants to use numeric characters
-
-var selectNumber = confirm("Would you like to use numbers?");
-
-//Confirm whether user wants to use special symbols
-
-var selectSpecial = confirm("Would you like to user special characters?");
-
-// call generatePassword function to Generate Password
-generatePassword();
-
-writePassword();
-
-function generatePassword() {
-  
-  for (let i = 0; i < plength; i++) {
-    Password += passwordText.charAt(
-      Math.floor(Math.random() * passwordText.length)
+  if (!plength) {
+    alert("This needs a value");
+  } else if (plength < 8 || plength > 128) {
+    plength = parseInt(
+      prompt(
+        "Enter length of password.* Length must be between 8 - 128 characters",
+        ""
+      )
     );
-  }
-  
-  if (selectLowerCase) {
-    passwordText += lowerCase;
-  }
-  if (selectUpperCase) {
-    passwordText += upperCase;
+  } else {
+    // Confirm whether user wants to use lower case letters
+
+    selectLowerCase = confirm("Would you like to use lower case letters?");
+
+    // Confirm whether user wants to use upper case letters
+
+    selectUpperCase = confirm("Would you like to use upper case letters?");
+
+    //Confirm whether user wants to use numeric characters
+
+    selectNumber = confirm("Would you like to use numbers?");
+
+    //Confirm whether user wants to use special symbols
+
+    selectSpecial = confirm("Would you like to user special characters?");
   }
 
-  if (selectNumber) {
-    passwordText += numbers;
-  }
+  for (let i = 0; i < plength; i++) {
+    password += passwordText.charAt(
+     Math.floor(Math.random() * passwordText.length)
+    );
 
-  if (selectSpecial) {
-    passwordText += specialCharacters;
-  }
+    if (selectLowerCase && password.length < plength) {
+      password = passwordText += lowerCase.charAt(
+        Math.floor(Math.random() * lowerCase.length)
+      );
+    }
+    if (selectUpperCase && password.length < plength) {
+      password = passwordText += upperCase.charAt(
+        Math.floor(Math.random() * upperCase.length)
+      );
+    }
 
-   return Password;
+    if (selectNumber && password.length < plength) {
+      password = passwordText += numbers.charAt(
+        Math.floor(Math.random() * numbers.length)
+      );
+    }
+
+    if (selectSpecial && password.length < plength) {
+      password = passwordText += specialCharacters.charAt(
+        Math.floor(Math.random() * specialCharacters.length)
+      );
+    }
+
+    // returns input to text area
+    passwordText.value = password;
+  }
 }
