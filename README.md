@@ -35,4 +35,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ### Tests
-Deployed Applications: https://vasavi245.github.io/week3_Homework/
+Deployed Applications:  * https://vasavi245.github.io/week3_Homework/
+                        * https://github.com/vasavi245/week3_Homework
